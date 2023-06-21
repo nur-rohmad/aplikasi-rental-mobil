@@ -1,9 +1,9 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -27,14 +27,14 @@ class Auth extends CI_Controller
     {
         $this->form_validation->set_rules('username', 'Email', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == false) {
             $this->load->view('login');
         } else {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
             $user = $this->db->get_where('tbl_akun', [
                 'username' => $username,
-                'deleted_at' => NULL
+                'deleted_at' => null
             ])->row_array();
             //jika usernya ada
             if ($user) {
@@ -69,7 +69,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
         $this->form_validation->set_rules('username', 'User Name', 'trim|required|is_unique[tbl_akun.username]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == false) {
             # code...
             $this->load->view('register');
         } else {
@@ -88,7 +88,7 @@ class Auth extends CI_Controller
             $user_id_max = $this->db->query("SELECT max(id) as 'last_id' FROM tbl_akun")->row_array();
             $data_pemesan = [
                 'id_user' =>  $user_id_max['last_id'],
-                'nama_pemesan' => $this->input->post('nama', TRUE),
+                'nama_pemesan' => $this->input->post('nama', true),
                 'foto' => 'default.png',
             ];
             $this->db->insert('tbl_pemesan', $data_pemesan);

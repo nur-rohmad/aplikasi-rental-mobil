@@ -1,9 +1,9 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pesanan extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -63,7 +63,7 @@ class Pesanan extends CI_Controller
 
     public function prosses_tambah_pesanan()
     {
-        // set rules 
+        // set rules
         $this->form_validation->set_rules('tgl_pinjam', 'Tanggal Pinjam', 'required');
         $this->form_validation->set_rules('tgl_kembali', 'Tanggal Kembali', 'required');
         $this->form_validation->set_rules('total_bayar', 'Jenis Jasa', 'required');
@@ -74,7 +74,7 @@ class Pesanan extends CI_Controller
 
         $data_pemesan = $this->m_pemesan->get_pemesan_by_user_id($_SESSION['user']['id_user']);
         if ($_SESSION['user']['role'] == 'pengguna') {
-            // cek data pemesan 
+            // cek data pemesan
             if ($data_pemesan['nama_pemesan'] == null || $data_pemesan['alamat'] == null || $data_pemesan['foto_ktp'] == null) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                Gagal melakukan pemesanan! Lengkapi data anda!</div>');
@@ -84,34 +84,34 @@ class Pesanan extends CI_Controller
         // var_dump($this->m_pesanan->cek_tanggal($this->input->post('id_mobil', TRUE), $this->input->post('tgl_pinjam', TRUE), $this->input->post('tgl_kembali', TRUE)));
         // die;
 
-        if ($this->m_pesanan->cek_tanggal($this->input->post('id_mobil', TRUE), $this->input->post('tgl_pinjam', TRUE), $this->input->post('tgl_kembali', TRUE))) {
+        if ($this->m_pesanan->cek_tanggal($this->input->post('id_mobil', true), $this->input->post('tgl_pinjam', true), $this->input->post('tgl_kembali', true))) {
             // die;
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                Gagal melakukan pemesanan! Mobil yang dipilih sedang digunakan saat tanggal tersebut</div>');
             redirect('pesanan');
         }
 
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data = [
-                'id_mobil' => $this->input->post('id_mobil', TRUE),
-                'no_pesanan' => $this->input->post('no_pesanan', TRUE),
-                'tgl_pinjam' => $this->input->post('tgl_pinjam', TRUE),
-                'tgl_kembali' => $this->input->post('tgl_kembali', TRUE),
-                'total_harga' => $this->input->post('total_bayar', TRUE),
-                'harga_sewa' => $this->input->post('harga', TRUE),
-                'lama_sewa' => $this->input->post('lama_sewa', TRUE),
-                'tujuan' => $this->input->post('tujuan', TRUE),
-                'perihal' => $this->input->post('perihal', TRUE),
-                'status_sopir' => $this->input->post('jasa_sopir', TRUE),
+                'id_mobil' => $this->input->post('id_mobil', true),
+                'no_pesanan' => $this->input->post('no_pesanan', true),
+                'tgl_pinjam' => $this->input->post('tgl_pinjam', true),
+                'tgl_kembali' => $this->input->post('tgl_kembali', true),
+                'total_harga' => $this->input->post('total_bayar', true),
+                'harga_sewa' => $this->input->post('harga', true),
+                'lama_sewa' => $this->input->post('lama_sewa', true),
+                'tujuan' => $this->input->post('tujuan', true),
+                'perihal' => $this->input->post('perihal', true),
+                'status_sopir' => $this->input->post('jasa_sopir', true),
             ];
 
             if ($_SESSION['user']['role'] == 'pengguna') {
                 $data['id_pemesan'] =  $data_pemesan['id'];
             } else {
-                $data['id_pemesan'] =  $this->input->post('id_pemesan', TRUE);
+                $data['id_pemesan'] =  $this->input->post('id_pemesan', true);
             }
-            if ($this->input->post('jasa_sopir', TRUE) == 'dengan_sopir') {
-                $data['sopir_by'] = $this->input->post('sopir_by', TRUE);
+            if ($this->input->post('jasa_sopir', true) == 'dengan_sopir') {
+                $data['sopir_by'] = $this->input->post('sopir_by', true);
             }
 
             if ($this->m_pesanan->tambah($data)) {
@@ -147,7 +147,7 @@ class Pesanan extends CI_Controller
     // ubah pesanan
     public function ubah($id_pesanan)
     {
-        // set rules 
+        // set rules
         $this->form_validation->set_rules('tgl_pinjam', 'Tanggal Pinjam', 'required');
         $this->form_validation->set_rules('tgl_kembali', 'Tanggal Kembali', 'required');
         $this->form_validation->set_rules('id_pemesan', 'Pemesan', 'required');
@@ -155,17 +155,17 @@ class Pesanan extends CI_Controller
         $this->form_validation->set_rules('tujuan', 'Tujuan', 'required');
         $this->form_validation->set_rules('perihal', 'Perihal', 'required');
 
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data = [
-                'id_mobil' => $this->input->post('id_mobil', TRUE),
-                'tgl_pinjam' => $this->input->post('tgl_pinjam', TRUE),
-                'tgl_kembali' => $this->input->post('tgl_kembali', TRUE),
-                'total_harga' => $this->input->post('total_bayar', TRUE),
-                'harga_sewa' => $this->input->post('harga', TRUE),
-                'lama_sewa' => $this->input->post('lama_sewa', TRUE),
-                'id_pemesan' =>  $this->input->post('id_pemesan', TRUE),
-                'tujuan' => $this->input->post('tujuan', TRUE),
-                'perihal' => $this->input->post('perihal', TRUE),
+                'id_mobil' => $this->input->post('id_mobil', true),
+                'tgl_pinjam' => $this->input->post('tgl_pinjam', true),
+                'tgl_kembali' => $this->input->post('tgl_kembali', true),
+                'total_harga' => $this->input->post('total_bayar', true),
+                'harga_sewa' => $this->input->post('harga', true),
+                'lama_sewa' => $this->input->post('lama_sewa', true),
+                'id_pemesan' =>  $this->input->post('id_pemesan', true),
+                'tujuan' => $this->input->post('tujuan', true),
+                'perihal' => $this->input->post('perihal', true),
             ];
             $where = ['id_pesanan' => $id_pesanan];
             if ($this->m_pesanan->update($data, $where)) {
@@ -230,17 +230,17 @@ class Pesanan extends CI_Controller
         $this->form_validation->set_rules('jumlah_denda', 'Jumlah Denda', 'required');
         $this->form_validation->set_rules('total_bayar', 'Total Bayar', 'required');
 
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data = [
-                'tgl_pengembalian' => $this->input->post('tgl_pengembalian', TRUE),
-                'lama_keterlambatan' => $this->input->post('lama_keterlambatan', TRUE),
-                'jumlah_denda' => $this->input->post('jumlah_denda', TRUE),
-                'total_bayar' => $this->input->post('total_bayar', TRUE),
+                'tgl_pengembalian' => $this->input->post('tgl_pengembalian', true),
+                'lama_keterlambatan' => $this->input->post('lama_keterlambatan', true),
+                'jumlah_denda' => $this->input->post('jumlah_denda', true),
+                'total_bayar' => $this->input->post('total_bayar', true),
                 'status_sewa' => "selesai",
             ];
 
             // where
-            $where = ['id_pesanan' => $this->input->post('id_pesanan', TRUE)];
+            $where = ['id_pesanan' => $this->input->post('id_pesanan', true)];
 
             if ($this->m_pesanan->update($data, $where)) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -249,7 +249,7 @@ class Pesanan extends CI_Controller
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                Data gagal disimpan</div>');
-                redirect('pesanan/kembalikan_mobil/' . $this->input->post('id_pesanan', TRUE));
+                redirect('pesanan/kembalikan_mobil/' . $this->input->post('id_pesanan', true));
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
@@ -263,8 +263,8 @@ class Pesanan extends CI_Controller
     {
         $this->form_validation->set_rules('sopir_by', 'Sopir', 'required');
 
-        if ($this->form_validation->run() != FALSE) {
-            $data = ['sopir_by' => $this->input->post('sopir_by', TRUE)];
+        if ($this->form_validation->run() != false) {
+            $data = ['sopir_by' => $this->input->post('sopir_by', true)];
             $where = ['id_pesanan' => $id_pesanan];
 
             // var_dump($data, $where);

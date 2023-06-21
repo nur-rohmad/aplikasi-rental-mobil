@@ -1,9 +1,9 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Merk extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -38,9 +38,9 @@ class Merk extends CI_Controller
         $this->form_validation->set_rules('merk', 'Nama Merek', 'required');
 
         // jika kondisi terpenuhi
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data = [
-                'merk' => $this->input->post('merk', TRUE)
+                'merk' => $this->input->post('merk', true)
             ];
             if ($this->db->insert('tbl_merk', $data)) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -64,12 +64,12 @@ class Merk extends CI_Controller
         $this->form_validation->set_rules('merk', 'Nama Merek', 'required');
 
         // jika kondisi terpenuhi
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data = [
-                'merk' => $this->input->post('merk', TRUE)
+                'merk' => $this->input->post('merk', true)
             ];
             $where = [
-                'id_merek' => $this->input->post('id_merek', TRUE)
+                'id_merek' => $this->input->post('id_merek', true)
             ];
 
             if ($this->db->update('tbl_merk', $data, $where)) {

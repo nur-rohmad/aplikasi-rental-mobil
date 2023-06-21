@@ -39,19 +39,19 @@
                                                                                                                                 } else {
                                                                                                                                     echo $search['tanggal_awal'];
                                                                                                                                 }
-                                                                                                                                ?>" placeholder="tanggal_awal">
+?>" placeholder="tanggal_awal">
                                             </div>
                                         </div>
                                         <div class="col-md-0,5 pt-2 d-sm-none d-lg-block">-</div>
                                         <div class="col-md-2 col-12">
                                             <div class="form-group my-1">
                                                 <input type="date" name="tanggal_akhir_transaksi" class="form-control" value="<?php
-                                                                                                                                if (empty($search['tanggal_akhir'])) {
-                                                                                                                                    echo "";
-                                                                                                                                } else {
-                                                                                                                                    echo $search['tanggal_akhir'];
-                                                                                                                                }
-                                                                                                                                ?>" placeholder="tanggal">
+if (empty($search['tanggal_akhir'])) {
+    echo "";
+} else {
+    echo $search['tanggal_akhir'];
+}
+?>" placeholder="tanggal">
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-12">

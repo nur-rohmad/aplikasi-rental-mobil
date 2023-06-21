@@ -1,9 +1,9 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Sopir extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -38,14 +38,14 @@ class Sopir extends CI_Controller
         $this->form_validation->set_rules('no_hp', 'No HP', 'required');
 
         // jika kondisi tidak terpenuhi
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $id = $this->m_pemesan->get_new_id_sopir();
             $data = [
                 'id_sopir' => $id,
-                'nama_sopir' => $this->input->post('nama_sopir', TRUE),
-                'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
-                'alamat_sopir' => $this->input->post('alamat', TRUE),
-                'no_hp' => $this->input->post('no_hp', TRUE),
+                'nama_sopir' => $this->input->post('nama_sopir', true),
+                'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
+                'alamat_sopir' => $this->input->post('alamat', true),
+                'no_hp' => $this->input->post('no_hp', true),
             ];
 
             if ($_FILES['foto_sopir']['size'] != 0) {
@@ -112,13 +112,13 @@ class Sopir extends CI_Controller
         $this->form_validation->set_rules('no_hp', 'No HP', 'required');
 
         // jika kondisi tidak terpenuhi
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data_old = $this->db->get_where('tbl_sopir', ['id_sopir' => $id_sopir])->row_array();
             $data = [
-                'nama_sopir' => $this->input->post('nama_sopir', TRUE),
-                'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
-                'alamat_sopir' => $this->input->post('alamat', TRUE),
-                'no_hp' => $this->input->post('no_hp', TRUE),
+                'nama_sopir' => $this->input->post('nama_sopir', true),
+                'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
+                'alamat_sopir' => $this->input->post('alamat', true),
+                'no_hp' => $this->input->post('no_hp', true),
             ];
             if ($_FILES['foto_sopir']['size'] != 0) {
                 $config['upload_path']          = './uploads/sopir/';

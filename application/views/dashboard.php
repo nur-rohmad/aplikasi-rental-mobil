@@ -106,17 +106,17 @@
                                 <div id="myChart2"></div>
                                 <?php
                                 $label_bar = "";
-                                $jumlah_bar = "";
-                                foreach ($mobil_favorit as $data) {
-                                    $nama_mobil = $data['nama_mobil'];
+                    $jumlah_bar = "";
+                    foreach ($mobil_favorit as $data) {
+                        $nama_mobil = $data['nama_mobil'];
 
-                                    $label_bar .= "'$nama_mobil'" . ", ";
-                                    //mengambil data jumlah 
-                                    $total = $data['jumlah'];
-                                    $jumlah_bar .= "'$total'" . ", ";
-                                };
+                        $label_bar .= "'$nama_mobil'" . ", ";
+                        //mengambil data jumlah
+                        $total = $data['jumlah'];
+                        $jumlah_bar .= "'$total'" . ", ";
+                    };
 
-                                ?>
+                    ?>
                             </div>
                         </div>
                     </div>

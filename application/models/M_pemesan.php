@@ -1,4 +1,5 @@
 <?php
+
 class M_pemesan extends CI_Model
 {
     public function __construct()
@@ -43,7 +44,7 @@ class M_pemesan extends CI_Model
         return $data;
     }
 
-    // update 
+    // update
     public function Update($param, $where)
     {
         return $this->db->update($this->tabel, $param, $where);

@@ -1,9 +1,9 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Akun extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -25,13 +25,13 @@ class Akun extends CI_Controller
         $data = [
             'aktif' => 'akun',
             'judul' => 'Data Akun',
-            'data_akun' => $this->db->get_where('tbl_akun', ['deleted_at' => NULL])->result_array(),
+            'data_akun' => $this->db->get_where('tbl_akun', ['deleted_at' => null])->result_array(),
             'no' => 1
         ];
         $this->load->view('akun/index', $data);
     }
 
-    // tambah 
+    // tambah
     public function tambah()
     {
         // set rule
@@ -41,20 +41,20 @@ class Akun extends CI_Controller
         $this->form_validation->set_rules('role', 'Role', 'trim|required');
 
         // jika kondisi terpenuhi
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data = [
-                'nama' => $this->input->post('nama', TRUE),
-                'username' => $this->input->post('username', TRUE),
-                'password' => password_hash($this->input->post('password', TRUE), PASSWORD_DEFAULT),
-                'role' => $this->input->post('role', TRUE),
+                'nama' => $this->input->post('nama', true),
+                'username' => $this->input->post('username', true),
+                'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
+                'role' => $this->input->post('role', true),
                 'foto' => 'default.png',
             ];
             if ($this->db->insert('tbl_akun', $data)) {
-                if ($this->input->post('role', TRUE) == 'pengguna') {
+                if ($this->input->post('role', true) == 'pengguna') {
                     $user_id_max = $this->db->query("SELECT max(id) as 'last_id' FROM tbl_akun")->row_array();
                     $data_pemesan = [
                         'id_user' =>  $user_id_max['last_id'],
-                        'nama_pemesan' => $this->input->post('nama', TRUE),
+                        'nama_pemesan' => $this->input->post('nama', true),
                         'foto' => 'default.png',
                     ];
                     if ($this->m_pemesan->insert($data_pemesan)) {
@@ -92,14 +92,14 @@ class Akun extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'trim|min_length[8]');
         $this->form_validation->set_rules('role', 'Role', 'trim|required');
 
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data = [
-                'nama' => $this->input->post('nama', TRUE),
-                'username' => $this->input->post('username', TRUE),
-                'role' => $this->input->post('role', TRUE),
+                'nama' => $this->input->post('nama', true),
+                'username' => $this->input->post('username', true),
+                'role' => $this->input->post('role', true),
             ];
-            if ($this->input->post('password', TRUE) != null) {
-                $data['password'] =  password_hash($this->input->post('password', TRUE), PASSWORD_DEFAULT);
+            if ($this->input->post('password', true) != null) {
+                $data['password'] =  password_hash($this->input->post('password', true), PASSWORD_DEFAULT);
             }
             $where = ['id' => $id_akun];
             if ($this->db->update('tbl_akun', $data, $where)) {

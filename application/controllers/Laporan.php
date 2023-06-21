@@ -1,9 +1,9 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Laporan extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -32,8 +32,8 @@ class Laporan extends CI_Controller
 
             ];
         }
-        $tanggal_awal = empty($search['tanggal_awal']) ?   ""  :  $search['tanggal_awal'];
-        $tanggal_akhir = empty($search['tanggal_akhir']) ?   ""  :  $search['tanggal_akhir'];
+        $tanggal_awal = empty($search['tanggal_awal']) ? "" : $search['tanggal_awal'];
+        $tanggal_akhir = empty($search['tanggal_akhir']) ? "" : $search['tanggal_akhir'];
         $data['data_pesanan'] =  $this->m_pesanan->get_all_laporan($tanggal_awal, $tanggal_akhir);
         $data['total_pendapatan'] =  $this->m_pesanan->total_pendapatan($tanggal_awal, $tanggal_akhir);
         $this->load->view('laporan/index', $data);

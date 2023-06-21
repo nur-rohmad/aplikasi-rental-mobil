@@ -109,7 +109,7 @@
 					</div>
 				</div>
 				<?php if ($pesanan['status_sopir'] == "dengan_sopir") :
-					if ($pesanan['sopir_by'] != null) : ?>
+				    if ($pesanan['sopir_by'] != null) : ?>
 
 						<div class="col-md-6">
 							<div class="card shadow">
@@ -149,7 +149,7 @@
 							</div>
 						</div>
 				<?php
-					endif;
+				    endif;
 				endif; ?>
 			</div>
 		</div>

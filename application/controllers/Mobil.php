@@ -1,9 +1,9 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Mobil extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -55,18 +55,18 @@ class Mobil extends CI_Controller
         $this->form_validation->set_rules('denda', 'Denda', 'required');
 
         // jika kondisi terpenuhi
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $id = $this->m_mobil->get_new_id();
             $data = [
                 'id' => $id,
-                'id_merk' => $this->input->post('id_merk', TRUE),
-                'nama_mobil' => $this->input->post('nama_mobil', TRUE),
-                'warna' => $this->input->post('warna', TRUE),
-                'jumlah_kursi' => $this->input->post('jumlah_kursi', TRUE),
-                'no_polisi' => $this->input->post('no_polisi', TRUE),
-                'tahun_beli' => $this->input->post('tahun_beli', TRUE),
-                'denda' => $this->input->post('denda', TRUE),
-                'harga' => $this->input->post('harga', TRUE),
+                'id_merk' => $this->input->post('id_merk', true),
+                'nama_mobil' => $this->input->post('nama_mobil', true),
+                'warna' => $this->input->post('warna', true),
+                'jumlah_kursi' => $this->input->post('jumlah_kursi', true),
+                'no_polisi' => $this->input->post('no_polisi', true),
+                'tahun_beli' => $this->input->post('tahun_beli', true),
+                'denda' => $this->input->post('denda', true),
+                'harga' => $this->input->post('harga', true),
             ];
             $config['upload_path']          = './uploads/mobil/';
             $config['allowed_types']        = 'gif|jpg|png';
@@ -125,16 +125,16 @@ class Mobil extends CI_Controller
         // $this->form_validation->set_rules('gambar_mobil', 'Gambar Mobil', 'required');
         $this->form_validation->set_rules('harga', 'Harga Mobil', 'required');
         $data_old = $this->m_mobil->get_mobil_by_id($id_mobil);
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data = [
-                'id_merk' => $this->input->post('id_merk', TRUE),
-                'nama_mobil' => $this->input->post('nama_mobil', TRUE),
-                'warna' => $this->input->post('warna', TRUE),
-                'jumlah_kursi' => $this->input->post('jumlah_kursi', TRUE),
-                'no_polisi' => $this->input->post('no_polisi', TRUE),
-                'tahun_beli' => $this->input->post('tahun_beli', TRUE),
-                'denda' => $this->input->post('denda', TRUE),
-                'harga' => $this->input->post('harga', TRUE),
+                'id_merk' => $this->input->post('id_merk', true),
+                'nama_mobil' => $this->input->post('nama_mobil', true),
+                'warna' => $this->input->post('warna', true),
+                'jumlah_kursi' => $this->input->post('jumlah_kursi', true),
+                'no_polisi' => $this->input->post('no_polisi', true),
+                'tahun_beli' => $this->input->post('tahun_beli', true),
+                'denda' => $this->input->post('denda', true),
+                'harga' => $this->input->post('harga', true),
             ];
 
             $config['upload_path']          = './uploads/mobil/';

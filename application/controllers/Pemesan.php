@@ -1,9 +1,9 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pemesan extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -39,19 +39,19 @@ class Pemesan extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat Kelamain', 'required');
 
         // kondisi jika rules terpenuhi
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             // data yang diupdate
             $data = [
-                'nama_pemesan' => $this->input->post('nama_pemesan', TRUE),
-                'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
-                'alamat' => $this->input->post('alamat', TRUE),
+                'nama_pemesan' => $this->input->post('nama_pemesan', true),
+                'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
+                'alamat' => $this->input->post('alamat', true),
             ];
             if (
                 $_FILES['foto_ktp']['size'] != 0
             ) {
                 $config2['upload_path']          = './uploads/pemesan/foto_ktp/';
                 $config2['allowed_types']        = 'gif|jpg|png';
-                $config2['file_name']            = "ktp-" . $this->input->post('id_pemesan', TRUE) . "-" . time();
+                $config2['file_name']            = "ktp-" . $this->input->post('id_pemesan', true) . "-" . time();
 
                 $this->load->library(
                     'upload',
@@ -71,7 +71,7 @@ class Pemesan extends CI_Controller
             if ($_FILES['foto']['size'] != 0) {
                 $config['upload_path']          = './uploads/pemesan/';
                 $config['allowed_types']        = 'gif|jpg|png';
-                $config['file_name']            = $this->input->post('id_pemesan', TRUE) . "-" . time();
+                $config['file_name']            = $this->input->post('id_pemesan', true) . "-" . time();
 
                 $this->load->library('upload', $config, 'foto_profil');
                 $this->foto_profil->initialize($config);
@@ -85,7 +85,7 @@ class Pemesan extends CI_Controller
                 }
             }
             // where
-            $where = ['id' => $this->input->post('id_pemesan', TRUE)];
+            $where = ['id' => $this->input->post('id_pemesan', true)];
 
             if ($this->m_pemesan->Update($data, $where)) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -108,13 +108,13 @@ class Pemesan extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
 
         // jika kondisi tidak terpenuhi
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $id = $this->m_pemesan->get_new_id();
             $data = [
                 'id' => $id,
-                'nama_pemesan' => $this->input->post('nama_pemesan', TRUE),
-                'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
-                'alamat' => $this->input->post('alamat', TRUE),
+                'nama_pemesan' => $this->input->post('nama_pemesan', true),
+                'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
+                'alamat' => $this->input->post('alamat', true),
             ];
 
             if ($_FILES['foto']['size'] != 0) {
@@ -191,12 +191,12 @@ class Pemesan extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
 
         // jika kondisi tidak terpenuhi
-        if ($this->form_validation->run() !== FALSE) {
+        if ($this->form_validation->run() !== false) {
             $data_old = $this->m_pemesan->get_pemesan_by_id_pemesan($id_pemesan);
             $data = [
-                'nama_pemesan' => $this->input->post('nama_pemesan', TRUE),
-                'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
-                'alamat' => $this->input->post('alamat', TRUE),
+                'nama_pemesan' => $this->input->post('nama_pemesan', true),
+                'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
+                'alamat' => $this->input->post('alamat', true),
             ];
             if ($_FILES['foto']['size'] != 0) {
                 $config['upload_path']          = './uploads/pemesan/';

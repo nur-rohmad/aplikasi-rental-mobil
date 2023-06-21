@@ -175,8 +175,8 @@
 								<tbody>
 									<?php foreach ($data_pesanan as $key => $pesanan) : ?>
 										<tr style=" <?php if ($pesanan['tgl_kembali'] < date('Y-m-d H:i:s') && $pesanan['status_sewa'] == "belum selesai") {
-														echo 'background-color: gray; color: aliceblue; ';
-													}   ?> ">
+										    echo 'background-color: gray; color: aliceblue; ';
+										}   ?> ">
 											<td><?= $no++ ?></td>
 											<td><?= $pesanan['no_pesanan'] ?></td>
 											<?php if ($_SESSION['user']['role'] == 'admin') : ?>
@@ -192,7 +192,7 @@
 														<a href="<?= base_url('pesanan/kembalikan_mobil/' . $pesanan['id_pesanan']) ?>" class="btn btn-sm btn-success mb-2"><i class="fa fa-upload"></i> Kembalikan</a><br>
 													<?php endif; ?>
 													<?php if ($pesanan['status_sopir'] == "dengan_sopir") :
-														if ($pesanan['sopir_by'] == null) : ?>
+													    if ($pesanan['sopir_by'] == null) : ?>
 															<a href="#" data-toggle="modal" data-target="#modalTambahSopir-<?= $key ?>" class="btn btn-sm btn-dark mb-2"><i class="fa fa-id-card mr-2"></i> Pilih Sopir</a><br>
 												<?php endif;
 													endif;
